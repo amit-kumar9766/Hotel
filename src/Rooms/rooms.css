@@ -1,0 +1,15 @@
+#bigphoto {
+  
+    position: absolute;
+  
+  }
+
+#square{
+    width:100px;
+    height:100px;
+    position:absolute;
+    border-bottom:2px solid black;
+    border-right:2px solid black ;
+    border-bottom-right-radius: 30px;
+    
+}

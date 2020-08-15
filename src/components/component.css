@@ -1,0 +1,12 @@
+#parallaxintro .view {
+    min-height: 100vh !important;
+    height: unset !important;
+  }
+
+  .col {
+    padding: 1rem;
+    background-color: #33b5e5;
+    border: 2px solid #fff;
+    color: #fff;
+    text-align: center;
+    } 
