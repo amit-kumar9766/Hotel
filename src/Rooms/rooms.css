@@ -11,5 +11,9 @@
     border-bottom:2px solid black;
     border-right:2px solid black ;
     border-bottom-right-radius: 30px;
-    
+    background:rgba(0, 0, 0, 0.514);
 }
+
+.rooms {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%};

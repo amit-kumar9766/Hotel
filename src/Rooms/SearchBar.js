@@ -4,49 +4,39 @@ import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from
 
 const SearchBar=()=>{
     return (
-     
+     <>
+    <div style={{display:'flex',justifyContent:'center'}}><h2>SEARCH ROOMS HERE</h2></div>
     <MDBRow>
-        
-    <MDBCol size="4"><h6>Room Type</h6><MDBDropdown>
-      <MDBDropdownToggle caret color="primary">
-        MDBDropdown
-      </MDBDropdownToggle>
-      <MDBDropdownMenu basic>
-        <MDBDropdownItem>Regular link</MDBDropdownItem>
-        <MDBDropdownItem disabled href="#">
-          Disabled link
-        </MDBDropdownItem>
-        <MDBDropdownItem href="#">Another link</MDBDropdownItem>
-      </MDBDropdownMenu>
-    </MDBDropdown> </MDBCol>
+    
+    <MDBCol size="4">  <div style={{width:'60%'}}>
+        <select className="browser-default custom-select">
+          <option>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div> </MDBCol>
 
-    <MDBCol size="4"><h6>Guests</h6><MDBDropdown>
-      <MDBDropdownToggle caret color="primary">
-        MDBDropdown
-      </MDBDropdownToggle>
-      <MDBDropdownMenu basic>
-        <MDBDropdownItem>Regular link</MDBDropdownItem>
-        <MDBDropdownItem disabled href="#">
-          Disabled link
-        </MDBDropdownItem>
-        <MDBDropdownItem href="#">Another link</MDBDropdownItem>
-      </MDBDropdownMenu>
-    </MDBDropdown> </MDBCol>
 
-    <MDBCol size="4"><h6>Room Price</h6><MDBDropdown>
-      <MDBDropdownToggle caret color="primary">
-        MDBDropdown
-      </MDBDropdownToggle>
-      <MDBDropdownMenu basic>
-        <MDBDropdownItem>Regular link</MDBDropdownItem>
-        <MDBDropdownItem disabled href="#">
-          Disabled link
-        </MDBDropdownItem>
-        <MDBDropdownItem href="#">Another link</MDBDropdownItem>
-      </MDBDropdownMenu>
-    </MDBDropdown> </MDBCol>
+
+    {/* <div style={{width:'500px'}}> */}
+    <MDBCol size="4"> <div>
+     <input type="range" id="vol" name="vol" min="0" max="100" style={{width:'60%'}}/>
+      </div> </MDBCol>
+      {/* </div> */}
+
+    <MDBCol size="4"> <div style={{width:'60%'}}>
+        <select className="browser-default custom-select">
+          <option>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div> </MDBCol>
 
   </MDBRow>
+  </>
 
-    )}
+    )
+  }
 export default SearchBar;

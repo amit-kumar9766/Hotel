@@ -9,20 +9,23 @@ import  Rooms  from "./components/FeaturesRoom";
 import TestimonialsMultiPage from './components/Testimonials';
 import Footer from './components/Footer';
 import RoomsPage from './Rooms/Rooms';
+import RoomsData from './Rooms/RoomsData';
 import RoomDetails from './Rooms/RoomDetails';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route ,Link} from "react-router-dom";
 import Home from './components/Home'
+
 
 class App extends Component {
   render() {
     return (
-
+    <>
+      
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/rooms" component={RoomsPage} />
-      <Route exact path='/rooms/details' component={RoomDetails} />
+      <Route exact path="/rooms" component={RoomsData} />
+      {/* <Route exact path='/rooms/details' component={RoomDetails} /> */}
     </Switch>
- 
+    </>
 
     );
   }

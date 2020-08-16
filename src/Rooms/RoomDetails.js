@@ -3,7 +3,9 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import NavbarPage  from '../components/Navbar'
 
 
-const RoomDetails = () => {
+const RoomDetails = ({newdata}) => {
+  
+console.log(newdata)
 return (
     <>
 <NavbarPage />
@@ -30,14 +32,10 @@ return (
 
     <MDBRow style={{marginTop:'30px'}} >
     <MDBCol size="6"><h3>Details</h3> 
-       <p>Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.</p> 
+       <p>{newdata.desc}</p> 
        </MDBCol>
        <MDBCol size="6"><h3>Info</h3> 
-       <p>Price : $500
-        Size : 700 SQFT
-        Max Capacity: 6 People
-        Pets Allowed
-        Free Breakfast Included</p> 
+       <p>{newdata.info}</p> 
        </MDBCol>
 
   </MDBRow>
