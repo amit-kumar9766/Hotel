@@ -4,7 +4,7 @@ import {  MDBRow, MDBCol, MDBCardBody, MDBIcon, MDBBtn, MDBView, MDBMask } from 
 
 const Rooms = () => {
   return (
-    <section className="text-center my-5">
+    <section className="text-center my-5 container">
       <h2 className="h1-responsive font-weight-bold my-5">
         Our Featured Rooms
       </h2>
@@ -28,9 +28,7 @@ const Rooms = () => {
               Temporibus autem quibusdam et aut officiis debitis aut rerum
               necessitatibus saepe eveniet ut et voluptates repudiandae.
             </p> */}
-            <MDBBtn color="indigo" size="sm">
-              <MDBIcon far  className="left" /> FEATURES
-            </MDBBtn>
+          
            
           </MDBCardBody>
         </MDBCol>
@@ -48,9 +46,7 @@ const Rooms = () => {
           <MDBCardBody className="pb-0">
             <h4 className="font-weight-bold my-3">Super deluxe</h4>
            
-            <MDBBtn color="indigo" size="sm">
-              <MDBIcon far  className="left" /> FEATURES
-            </MDBBtn>
+          
           </MDBCardBody>
         </MDBCol>
 
@@ -68,9 +64,7 @@ const Rooms = () => {
           <MDBCardBody className="pb-0">
             <h4 className="font-weight-bold my-3">Presidental Suite</h4>
           
-            <MDBBtn color="indigo" size="sm">
-              <MDBIcon far  className="left" /> FEATURES
-            </MDBBtn>
+          
           </MDBCardBody>
         </MDBCol>
       </MDBRow>

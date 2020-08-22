@@ -12,15 +12,19 @@ class Home extends Component {
   render() {
     return (
 
-      <MDBContainer  fluid >
+      // <MDBContainer >
+         
+        <div  style={{backgroundColor:'#f5f5dc'}}>
         <NavbarPage/>
         <ParallaxIntro/>
         <FeaturesPage/>
         <Rooms/>
-        <TestimonialsMultiPage/>
+       
+        {/* <TestimonialsMultiPage/> */}
         <Footer/>
+        </div>
         
-      </MDBContainer>
+      // {/* </MDBContainer> */}
 
 
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Component} from "react";
 import {MDBCardText,MDBCardTitle,MDBCardImage, MDBCard, MDBRow, MDBCol, MDBCardBody, MDBIcon, MDBBtn, MDBView, MDBMask ,MDBNavLink} from "mdbreact";
 import NavbarPage  from '../components/Navbar'
 import ParallaxIntro  from '../components/Intro'
@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import './rooms.css'
 import { Switch, Route ,Link} from "react-router-dom";
 import RoomDetails from './RoomDetails';
+import slide from  '../assets/slide2.jpg';
 
 
 const Box = styled.div`
@@ -16,57 +17,108 @@ const Box = styled.div`
   background-size: contain;
   `;
 
+class RoomsPage extends Component {
+  constructor() {
+  super()
 
-const RoomsPage = ({Data}) => {
-  console.log(Data)
-  return (
+  this.state = {
+     data: [],
+     loading:true,
+     searchTerm:'',
+    }
+  }
+//why const is giving error?
+handleChange=(e)=>{
+    const term =e.target.value;
+    console.log(term)
+    this.setState({
+      searchTerm:term
+    })
+  }
   
-    <>
-    <NavbarPage/>
-   <div >
-    <img
-    src="https://images.unsplash.com/photo-1444201983204-c43cbd584d93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+
+componentDidMount() {
+  fetch("http://localhost:8000/data")
+    .then(response => response.json())
+    .then(Data => {
+    // console.log(typeof(data))
+    this.setState({  
+      data:Data,
+      loading:false,
+     })
+ })
+
+} 
+
+
+
+  render() {
+     
+    var {data}=this.state;
+    console.log(data)
+    if (this.state.searchTerm && this.state.searchTerm != "") {
+      data = this.state.data.filter(el => el.city.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) > -1)
+    }
+
+    // if (data.length===0)
+    //   return(
+    //     <h1>No cities matched! Pls search again......</h1>
+    //   )
+  // else
+    return(
+      <>
+   <NavbarPage/>
+ 
+    {/* <img
+    src={slide}
     alt=""
-    className="img-fluid"/>
+    className="img-fluid" style={{height:'400px',width:'1350px'}}/> */}
   
 
-    </div>
-
-    <div style={{marginTop:'40px'}}>
-    <SearchBar/>
+    <div className="search-bar">
+    {/* <SearchBar/>
+    */}
+     <input className="form-control" type="text" placeholder="Search Cities Here" value={this.state.searchTerm} 
+      onChange={(e)=>this.handleChange(e)}/>
     </div>
 
     
 
-    <section className="text-center my-5">
+    <section className="text-center my-5 container">
       <h2 className="h1-responsive font-weight-bold my-5">
-        Our Featured Rooms
+        Our Rooms
       </h2>
     
    
     <div className="rooms">
-
-    { Data.map((data,index)=>{return(
     
-    <MDBCol style={{ maxWidth: "22rem" }}>
-      <MDBCard>
-        <MDBCardImage className="img-fluid" src={data.src}
-          waves />
-        <MDBCardBody>
-       
-          <li>
-          <Link to="/rooms/details/${data.id}">Features</Link> 
-          </li>
-          <Switch>
-          <Route exact path='/rooms/details/${data.id}' render={()=><RoomDetails  newData={data}/>} />
-          </Switch>
+    
+    {!this.state.loading && data.map((dt,index)=>{
+      
+    return(
 
-          <MDBCardTitle>{data.RoomType}</MDBCardTitle>
-          <MDBCardText>{data.price}</MDBCardText>
-          <MDBBtn href="#">{data.id}</MDBBtn>
+    <MDBCol style={{ maxWidth: "22rem" ,backgroundColor:'white'}}>
+      
+      
+      <MDBCard>
+      
+        <MDBCardImage className="img-fluid" src={dt.src} style={{height:'250px',width:'100%'}}/>
+        <MDBCardBody>
+          <li>
+          <Link to={"/rooms/details/"+dt._id}><MDBBtn >Features </MDBBtn></Link> 
+          </li>
+          
+          <MDBCardTitle>Delhi</MDBCardTitle>
+          <MDBCardText>{dt.price}$</MDBCardText>
+          <MDBCardText>{dt.type}</MDBCardText>
+          {/* <MDBCardText>{dt.city}</MDBCardText>
+          <MDBCardText>Capacity:{dt.capacity}</MDBCardText> */}
         </MDBCardBody>
+
+       
       </MDBCard>
-    </MDBCol>
+    
+     </MDBCol>
         
         )})}
     
@@ -75,59 +127,10 @@ const RoomsPage = ({Data}) => {
     </section>
     </>
   );
+    
+
+    }
 }
 
-export default RoomsPage;
+export default RoomsPage
 
-
-
-
-
-{/* <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
-<div id="bigphoto">
-  <MDBView className="overlay rounded z-depth-1" waves>
-    <img
-      src="https://images.unsplash.com/photo-1576675784201-0e142b423952?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80"
-      alt=""
-      className="img-fluid"
-    />
-    <a href="#!">
-      <MDBMask overlay="white-slight" />
-    </a>
-  </MDBView>
-  <MDBCardBody className="pb-0">
-    <h4 className="font-weight-bold my-3">Super deluxe</h4>
-   
-    <MDBBtn color="indigo" size="sm">
-      <MDBIcon far  className="left" /> 
-      <MDBNavLink to="/rooms/details">Features</MDBNavLink>
-      {/* <div> FEATURES</div> */}
-//     </MDBBtn>
-//   </MDBCardBody>
-// </div>
-// <div id='square'> </div>
-// </MDBCol>
-
-// <MDBCol lg="4" md="12" className="mb-lg-0 mb-4">
-// <div id="bigphoto">
-//   <MDBView className="overlay rounded z-depth-1" waves>
-//     <img
-//       src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-//       alt=""
-//       className="img-fluid"
-//     />
-//     <a href="#!">
-//       <MDBMask overlay="white-slight" />
-//     </a>
-//   </MDBView>
-//   <MDBCardBody className="pb-0">
-//     <h4 className="font-weight-bold my-3">Presidental Suite</h4>
-  
-//     <MDBBtn color="indigo" size="sm">
-//       <MDBIcon far  className="left" /> FEATURES
-//     </MDBBtn>
-//   </MDBCardBody>
-  
-// </div> 
-// <div id='square'> </div>
-// </MDBCol> 

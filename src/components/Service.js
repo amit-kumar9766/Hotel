@@ -4,9 +4,9 @@ import {  MDBRow, MDBCol, MDBIcon } from "mdbreact";
 
 const FeaturesPage = () => {
   return (
-      <section className="text-center my-5">
+      <section className="text-center my-5 container">
         <h2 className="h1-responsive font-weight-bold my-5">
-           Our services
+           OUR SERVICES
         </h2>
        
         <MDBRow>

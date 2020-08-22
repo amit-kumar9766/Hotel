@@ -1,3 +1,8 @@
+
+body{
+  font-family: 'Baloo Tamma 2', cursive;
+font-family: 'Rubik', sans-serif;
+}
 #bigphoto {
   
     position: absolute;
@@ -16,4 +21,36 @@
 
 .rooms {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%};
+  grid-template-columns: 25% 25% 25% 25%
+
+};
+
+
+
+
+.search-bar {
+  margin-top: 30px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.form-control {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width:50% !important;
+ 
+}
+
+/* media quireis */
+
+@media (max-width: 576px) { 
+
+  .rooms {
+      
+      grid-template-columns: 100%;
+  }
+}
