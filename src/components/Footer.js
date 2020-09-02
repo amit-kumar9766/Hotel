@@ -3,7 +3,7 @@ const Footer=()=>{
 return(
    
     // <div style={{background:'green'}}>
-    <footer className="page-footer font-small light-green pt-4" >
+    <footer className="page-footer font-small default-color pt-4" >
     
       <div className="container" >
     

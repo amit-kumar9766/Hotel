@@ -6,17 +6,22 @@ font-family: 'Rubik', sans-serif;
 #bigphoto {
   
     position: absolute;
-  
+    overflow: hidden;
+    /* border: 2px solid black; */
   }
 
 #square{
-    width:100px;
-    height:100px;
+   
+    left:-1px;
+    top:-1px;
+    width:70px;
+    height:70px;
     position:absolute;
     border-bottom:2px solid black;
     border-right:2px solid black ;
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
     background:rgba(0, 0, 0, 0.514);
+    text-emphasis-color: yellow;
 }
 
 .rooms {
@@ -25,7 +30,9 @@ font-family: 'Rubik', sans-serif;
 
 };
 
-
+/* .paymentBtn{
+  color:'lightseagreen'
+} */
 
 
 .search-bar {

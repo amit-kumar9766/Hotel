@@ -68,7 +68,7 @@ class ParallaxIntro extends React.Component {
                 </h1>
                 <hr className='hr-light my-4' />
                 <h5 className='text-uppercase pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5  white-text font-weight-bold'>
-                  Deluxe Rooms start at Rs 1000
+                  Deluxe Rooms start at  300 $
                 </h5>
                 <MDBBtn
                   className='btn-light-green'

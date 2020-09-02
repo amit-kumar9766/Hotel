@@ -1,9 +1,15 @@
 import React from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+//import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import NavbarPage  from '../components/Navbar'
 import './rooms.css'
-
- 
+import Payment from './Payments';
+import Search from './Search';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { Switch, Route ,Link} from "react-router-dom";
+import { MDBBtn, MDBCol, MDBContainer, MDBRow } from "mdbreact";
 
 class RoomDetails extends React.Component{
     
@@ -16,10 +22,8 @@ class RoomDetails extends React.Component{
      }
 
 componentDidMount() {
-    // const ID=(this.props.match.params._id)
-    //  console.log(ID)
     const { match: { params } } = this.props;
-    fetch("http://localhost:8000/data/"+params._id)
+    fetch("https://hotel-backend2.herokuapp.com/data/"+params._id)
     .then(response => response.json())
     .then(data => {
     console.log(data);
@@ -30,7 +34,7 @@ componentDidMount() {
     })
         
     }
-         
+    
 
 render(){
     const {oneData}=this.state
@@ -48,12 +52,12 @@ render(){
             className="img-fluid"
         /></MDBCol>
     <MDBCol sm="12" md="12" lg="4" style={{padding:"20px"}} > <img
-            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+            src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             alt=""
             className="img-fluid"
         /></MDBCol>
     <MDBCol sm="12" md="12" lg="4" style={{padding:"20px"}} > <img
-            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+            src="https://images.pexels.com/photos/1267438/pexels-photo-1267438.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             alt=""
             className="img-fluid"
         /></MDBCol>
@@ -73,17 +77,20 @@ render(){
        
        <MDBCol sm="12" md="12" lg="4" ><h3>Info</h3> 
         <p style={{letterSpacing:'3px'}}>RoomType:  {oneData.type}</p> 
-       <p style={{letterSpacing:'3px'}}>Capacity:   {oneData.capacity}</p> 
-       <p style={{letterSpacing:'3px'}}>Price:      ${oneData.price}</p> 
-       <p style={{letterSpacing:'3px'}}> City:       {oneData.city}</p>
-       <p style={{letterSpacing:'3px'}}>Space:      {oneData.size}</p> 
-       <div class='pm-button'><a 
-       href='https://www.payumoney.com/sandbox/paybypayumoney/#/90F19F5C1EB1B7F381EC21FEEACBFE17'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/22.png' /></a></div>  
+        <p style={{letterSpacing:'3px'}}>Capacity:  {oneData.capacity}</p> 
+        <p style={{letterSpacing:'3px'}}> City:     {oneData.city}</p>
+        <p style={{letterSpacing:'3px'}}>Space:     {oneData.size}</p> 
+        <p style={{letterSpacing:'3px'}}>Price:     ${oneData.price}</p>
+       <div  > 
+       {/* <Payment data={oneData}/> */}
+       </div>
+       {/* <div class='pm-button'><a 
+       href='https://www.payumoney.com/sandbox/paybypayumoney/#/90F19F5C1EB1B7F381EC21FEEACBFE17'>
+      <img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/22.png' /></a></div>   */}
        </MDBCol>
 
 
        </>):""}
-     
        {/* </>
     )})} */}
 
@@ -95,14 +102,18 @@ render(){
   <MDBRow>
   {!this.state.loading && oneData.extras.map((ex,i)=>{
       return ( 
-    <MDBCol sm="12" md="12" lg="4" ><p >{ex}</p></MDBCol>
+    <MDBCol sm="12" md="12" lg="4" ><li >{ex}</li></MDBCol>
    
       )})}
   </MDBRow>
-  </div>
-  
-    
+  </div> 
 </MDBContainer>
+<div  style={{marginTop:'50p',display:'flex',justifyContent:'center'}}>
+
+<Search data={oneData}/>
+{/* <Link to={{pathname:"/search", data:oneData} }><MDBBtn onCLick={()=>this.sendData()}>Booking Here </MDBBtn></Link>  */}
+
+</div>
 </>
 
 

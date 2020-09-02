@@ -1,84 +1,97 @@
-import React from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
 
+import React,{useState} from 'react';
+import NavbarPage from './Navbar';
+import Axios from "axios";
+import { Redirect } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import { MDBBtn } from "mdbreact";
+import styled from 'styled-components';
 
-const Signup=()=>{
+const Button = styled.button`
+background: transparent;
+border-radius: 3px;
+border: 2px solid palevioletred;
+color: palevioletred;
+margin: 0 1em;
+padding: 0.25em 1em;
+margin-top: 20px;
+`
+const Input=styled.input`
+borderRadius:5px;
+height:40px;
+margin-top:20px;
+`
 
-      return (
-        
-       
-        <MDBContainer>
-         {/* <div style={{display:'flex'}}> */}
-          <MDBRow>
+function Signup() {
+  const history = useHistory();
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const[redirectto,setRedirectto]=useState('')
+  console.log(redirectto)
+ 
+ function formHandler(e){
+  e.preventDefault();
+  console.log(name,email,password);
 
-            <MDBCol md="6">
-              <MDBCard>
-                <MDBCardBody>
-                  <form>
-                    <p className="h4 text-center py-4">Sign up</p>
-                    <div className="grey-text">
-                     
-                      <MDBInput
-                        label="Your name"
-                        icon="user"
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                     
-                      <MDBInput
-                        label="Your email"
-                        icon="envelope"
-                        group
-                        type="email"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      
-                      <MDBInput
-                        label="Confirm your email"
-                        icon="exclamation-triangle"
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                      />
-                      
-                      <MDBInput
-                        label="Your password"
-                        icon="lock"
-                        group
-                        type="password"
-                        validate
-                      />
-                    </div>
-                    
-                    <div className="text-center py-4 mt-3">
-                      <MDBBtn color="cyan" type="submit">
-                        Register
-                      </MDBBtn>
-                    </div>
-                  </form>
+  Axios({
+    method: "POST",
+    data: {
+      name: name,
+      password: password,
+      username:email
+    },
+    withCredentials: true,
+    url: "https://hotel-backend2.herokuapp.com/register",
+  }).then((res) => {
+    console.log(res)
+    if(res.status===200){
+      console.log(res.data)
+      setRedirectto('/login')
+    }
+    else{
+      console.log('User already is there')
+    }
+  })
 
-                </MDBCardBody>
+   setName("")
+   setEmail("")
+   setPassword("")
 
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-          {/* </div> */}
+  }
+  console.log(redirectto)
+  if (redirectto!=="") {
+ return <Redirect to={{ pathname: '/login' }} />
+    // history.push('/login')
+}
+ 
+  return (
+    <>
+    <NavbarPage/>
+  
+  <form onSubmit={formHandler} style={{display:'flex',flexDirection:'column',
+  justifyContent:'center',marginTop:'200px',alignItems:'center'}}>
+      <Input value={name} onChange={e=>setName( e.target.value)} placeholder="Name"
+      type="text" required />
+      <Input value={email} onChange={e=>setEmail( e.target.value)} placeholder="Email" 
+       type="email" required />
+      <Input value={password} onChange={e=>setPassword( e.target.value)} placeholder="Password" 
+       type="password" required/>
+      <div>
+      <Button >SignUp</Button>
+      </div>
+    </form>
 
-        </MDBContainer>
-        
-      );
-    };
-    
+    {/* <Route exact path="/">
+    {? <Redirect to="/signup" /> : <PublicHomePage />}
+     </Route> */}
    
 
+  </>
+  );
 
+  
 
+}
 
 export default Signup;

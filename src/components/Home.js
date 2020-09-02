@@ -15,7 +15,7 @@ class Home extends Component {
       // <MDBContainer >
          
         <div  style={{backgroundColor:'#f5f5dc'}}>
-        <NavbarPage/>
+        <NavbarPage />
         <ParallaxIntro/>
         <FeaturesPage/>
         <Rooms/>
