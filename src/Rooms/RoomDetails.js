@@ -23,7 +23,7 @@ class RoomDetails extends React.Component{
 
 componentDidMount() {
     const { match: { params } } = this.props;
-    fetch("https://hotel-backend2.herokuapp.com/data/"+params._id)
+    fetch("http://localhost:3200/data/"+params._id)
     .then(response => response.json())
     .then(data => {
     console.log(data);
@@ -34,7 +34,7 @@ componentDidMount() {
     })
         
     }
-    
+//https://hotel-backend2.herokuapp.com/data/    
 
 render(){
     const {oneData}=this.state

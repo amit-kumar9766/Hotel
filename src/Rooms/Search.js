@@ -36,10 +36,11 @@ const Search=({data}) =>{
   var a1=startDate.toLocaleString().split('/');
   var a2=endDate.toLocaleString().split('/');
   console.log(a1,a2)
-  const noOfdays=a2[1]-a1[1]
+  const noOfdays=parseInt(a2[1])-parseInt(a1[1])
   console.log(noOfdays)
-  if (noOfdays>=0){
-   data.price=data.price*noOfdays;
+  if (noOfdays>0){
+    console.log(data.price)
+   data.price=parseInt(data.price)*noOfdays;
   }
   else if (noOfdays<0 && a1[0]-a2[0]<0){
     data.price=data.price*(30+noOfdays)
@@ -50,7 +51,7 @@ const Search=({data}) =>{
   // } 
   return (
       <div className='search' style={{marginTop:'100px'}} >
-           <h4 style={{marginLeft:'230px'}} > Booking Here </h4>
+           <h4 style={{marginLeft:'230px',backgroundColor:'lightblue',width:'150px'}} > Booking Here </h4>
           <div style={{borderStyle:'groove',borderColor: 'hsl(0, 0%, 73%)'}}>
           <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
           </div>

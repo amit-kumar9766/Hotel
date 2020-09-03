@@ -60,4 +60,8 @@ font-family: 'Rubik', sans-serif;
       
       grid-template-columns: 100%;
   }
+
+  .select-capacity{
+    margin-top: 1em;
+  }
 }

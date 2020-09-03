@@ -20,9 +20,10 @@ padding: 0.25em 1em;
 margin-top: 20px;
 `
 const Input=styled.input`
-borderRadius:5px;
+borderRadius:20%;
 height:40px;
 margin-top:20px;
+width:300px
 `
 
 function Signin() {
@@ -46,7 +47,7 @@ function Signin() {
       username:email
     },
     withCredentials: true,
-    url: "https://hotel-backend2.herokuapp.com/login",
+    url: "http://localhost:3200/login",
   }).then((res) => {
     console.log(res.data)
     if(res.data!=='No User Exists'){

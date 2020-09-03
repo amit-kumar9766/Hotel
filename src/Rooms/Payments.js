@@ -21,7 +21,7 @@ const Payment=()=>{
         const headers={
             "Content-Type":"application/json"
         }
-        return fetch('https://hotel-backend2.herokuapp.com/payment/checkout',{
+        return fetch('http://localhost:3200/payment/checkout',{
             method:"POST",
             headers,
             body:JSON.stringify(body)
@@ -38,7 +38,7 @@ const Payment=()=>{
     return(
         <>
         <NavbarPage />
-        <h4 style={{marginLeft:'20px'}}>Click to Pay!</h4>
+        <div style={{marginTop:'50px',marginLeft:'100px'}}><h5>Click Below To Pay!</h5>  </div>
         <div style={{marginLeft:'400px',marginTop:'150px'}}>
        
         <StripeCheckout

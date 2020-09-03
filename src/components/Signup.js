@@ -17,9 +17,10 @@ padding: 0.25em 1em;
 margin-top: 20px;
 `
 const Input=styled.input`
-borderRadius:5px;
+borderRadius:80px;
 height:40px;
 margin-top:20px;
+width:300px;
 `
 
 function Signup() {
@@ -42,7 +43,7 @@ function Signup() {
       username:email
     },
     withCredentials: true,
-    url: "https://hotel-backend2.herokuapp.com/register",
+    url: "http://localhost:3200/register",
   }).then((res) => {
     console.log(res)
     if(res.status===200){

@@ -10,3 +10,15 @@
     color: #fff;
     text-align: center;
     } 
+
+    /* .navbar-collapse {
+
+      z-index: 20 ! important;
+      background-color: #2bbbad !important;
+  
+      padding: 1em ! important;
+  } */
+
+  nav.navbar-dark.default-color.navbar.navbar-expand-md {
+    height: auto !important;
+}

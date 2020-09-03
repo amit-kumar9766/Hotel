@@ -19,6 +19,7 @@ import Signin from './components/Signin';
 import Search from './Rooms/Search'
 import {UserContext} from "./context/UserContext";
 import ProtectedRoute from './ProtectedRoutes'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const url="/rooms/details";
 const App =()=>
