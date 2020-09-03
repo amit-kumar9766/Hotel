@@ -21,7 +21,7 @@ const Payment=()=>{
         const headers={
             "Content-Type":"application/json"
         }
-        return fetch('http://localhost:3200/payment/checkout',{
+        return fetch('https://hotel-backend2.herokuapp.com/checkout',{
             method:"POST",
             headers,
             body:JSON.stringify(body)

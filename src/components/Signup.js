@@ -43,7 +43,7 @@ function Signup() {
       username:email
     },
     withCredentials: true,
-    url: "http://localhost:3200/register",
+    url: "https://hotel-backend2.herokuapp.com/register",
   }).then((res) => {
     console.log(res)
     if(res.status===200){

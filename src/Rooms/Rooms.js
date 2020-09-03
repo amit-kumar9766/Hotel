@@ -51,7 +51,7 @@ onClickHandler=(e)=>{
 
 
 componentDidMount() {
-  fetch("http://localhost:3200/data")
+  fetch("https://hotel-backend2.herokuapp.com/data")
     .then(response => response.json())
     .then(Data => {
     console.log(Data)
