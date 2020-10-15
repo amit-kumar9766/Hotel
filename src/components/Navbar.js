@@ -4,19 +4,8 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 import  {Link} from 'react-router-dom';
-//import { withRouter } from "react-router";
-//import Local from './Local'
-const Local=()=>{
-  let token = localStorage.getItem("auth");
-  console.log(token)
-  if (token==='Yes'){
-      return true
-  }
-  else{
-      return false;
-  }
-  
-}
+import Local from './Local'
+
 
 class NavbarPage extends Component {
   // constructor(){
@@ -39,7 +28,7 @@ handleClick=(e)=>{
 
 
 render() {
-    //console.log(this.props.auth)
+    
   return (
     <Router>
 
@@ -52,7 +41,7 @@ render() {
 
         <MDBNavbarToggler onClick={this.toggleCollapse} />
 
-        {/* {auth.isAuthenticated()?'<Com/>':""} */}
+      
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
         
@@ -76,9 +65,9 @@ render() {
           </MDBNavbarNav>
 
           <MDBNavbarNav right>
-            {Local()===true?
+            {Local()?
             (<MDBNavItem>
-              <Nav.Link href="/signup">{localStorage.getItem('name')}</Nav.Link>
+              <Nav.Link>{localStorage.getItem('name')}</Nav.Link>
             </MDBNavItem>):(
              <MDBNavItem>
               <Nav.Link href="/signup">SignUp</Nav.Link>
@@ -86,22 +75,23 @@ render() {
             
              }
 
-            { Local()===true?
+            { Local()?
            
            ( <MDBNavItem>
             <Nav.Link href="/" onClick={()=>this.handleClick()}>Logout</Nav.Link> 
-            {/* <button onClick={()=>this.handleClick()}>Logout</button>  */}
           </MDBNavItem>): (<MDBNavItem>
               <Nav.Link href="/login" >Login</Nav.Link>
             </MDBNavItem>)
            }
           
-            
+          <MDBNavItem>
+              <Nav.Link href="/bookings">Bookings</Nav.Link>
+          </MDBNavItem>
            
           </MDBNavbarNav>
         </MDBCollapse>
 
-        {/* </div> */}
+     
       </MDBNavbar>
     </Router>
     

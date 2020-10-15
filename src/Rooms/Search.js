@@ -1,66 +1,78 @@
 import { DateRangePicker } from 'react-date-range';
-import React, {useState,useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
 import { MDBBtn } from "mdbreact";
-import { Button } from "@material-ui/core";
-//import PeopleIcon from "@material-ui/icons/People";
-import { UserContext } from "../context/UserContext";
-const Search=({data}) =>{
+import DatePicker from 'react-datepicker';
+import { Container, Row, Col, Form} from 'react-bootstrap';
+import axios from 'axios';
 
-  //const data=props.location;
+const Search = ({ data, bid }) => {
+
   const history = useHistory();
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [price,setPrice]=useState(data.price)
-  const [login,setLogin]=useState(false)
-  const value = useContext(UserContext);
-    console.log(value)
-
-  const selectionRange = {
-      startDate: startDate,
-      endDate: endDate,
-      price:price,
-      key: "selection",
-    };
-
- const handleSelect=(ranges)=> {
-      setStartDate(ranges.selection.startDate);
-      setEndDate(ranges.selection.endDate);
-    
-  }
-
-  console.log(data)
- // console.log(startDate)
-  var a1=startDate.toLocaleString().split('/');
-  var a2=endDate.toLocaleString().split('/');
-  console.log(a1,a2)
-  const noOfdays=parseInt(a2[1])-parseInt(a1[1])
-  console.log(noOfdays)
-  if (noOfdays>0){
-    console.log(data.price)
-   data.price=parseInt(data.price)*noOfdays;
-  }
-  else if (noOfdays<0 && a1[0]-a2[0]<0){
-    data.price=data.price*(30+noOfdays)
-  }
   
-  // if(noOfdays<0 && a2[1]-a2[1]>0){
-  //   data.price=data.price*(30+noOfdays);
-  // } 
+  const [endDate, setEndDate] = useState(new Date())
+
+
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    console.log(startDate)
+    console.log(endDate)
+     
+    // axios.post('http://localhost:5000/date', {
+    //     startDate: startDate,
+    //     endDate: endDate,
+    //   })
+
+    fetch(`http://localhost:5000/bookings/${bid}/${localStorage.getItem('uid')}`, {
+      method: "POST",
+
+    }).then(res => {
+      console.log("res", res)
+    })
+      .catch(err => {
+        console.log(err);
+      })
+  }
   return (
-      <div className='search' style={{marginTop:'100px'}} >
-           <h4 style={{marginLeft:'230px',backgroundColor:'lightblue',width:'150px'}} > Booking Here </h4>
-          <div style={{borderStyle:'groove',borderColor: 'hsl(0, 0%, 73%)'}}>
-          <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
-          </div>
-          
-          {/* <input min={0} max={5} defaultValue={2} type="number" /> */}
-          <div style={{display:'flex',justifyContent:'center'}}>
-          <MDBBtn  color="default" onClick={() => history.push('/payment',{data:data})}>Pay Here</MDBBtn >
-          </div>
-      </div>
+    <>
+    <Col className="form-area ml-5">
+    <Form >
+       
+        <Form.Row>
+            <Form.Group as={Col}>
+                <Form.Label>From</Form.Label>
+                <br />
+                <DatePicker
+                    name="startDate"
+                    className="form-control"
+                    selected={startDate}
+                    onChange={date => setStartDate(date)}
+                    required
+                />
+            </Form.Group>
+
+            <Form.Group as={Col}>
+                <Form.Label>To</Form.Label>
+                <br />
+                <DatePicker
+                    name="endDate"
+                    className="form-control mr-auto"
+                    selected={endDate}
+                    onChange={date => setEndDate(date)}
+                    required
+                />
+            </Form.Group>
+        </Form.Row>
+       
+        <MDBBtn color="default" onClick={handleBooking}>Book Now</MDBBtn >
+       
+    </Form>
+</Col>
+ 
+
+   </>  
   )
 }
 
